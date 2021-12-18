@@ -1,5 +1,5 @@
 {
-  "name": "Miraclinic-front",
+  "name": "MiraclinicFront",
   "private": true,
   "scripts": {
     "dev": "next dev",
