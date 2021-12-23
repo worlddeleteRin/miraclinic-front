@@ -25,6 +25,12 @@ class APISiteClass {
         );
         return data
     }
+    getStaffMembers = async() => {
+        const { data } = await apiClient.get(
+            "site/staff-members"
+        );
+        return data
+    }
 }
 
 export const APISite = new APISiteClass()

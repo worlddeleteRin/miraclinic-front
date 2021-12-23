@@ -82,6 +82,16 @@ function BaseFooter () {
       </div>
     )
 
+    const credentialsBlock = (
+      <div>
+        <div>
+          ООО "Мира Клиник"
+          ИНН 9103093941
+          ОГРН 1209100008798
+        </div>
+      </div>
+    )
+
     if (commonInfoQuery.isLoading) {
         return (
             <>
@@ -89,19 +99,22 @@ function BaseFooter () {
             </>
         )
     }
-
+  
     return (
         <div className="bg-primary text-white px-4 py-5">
           <div className="max-w-screen-lg mx-auto flex items-center flex-col gap-5 md:flex-row">
-                { logoBlock }
-                <div className="flex-1 items-center text-center">
-                  { socialsBlock }
-                </div>
-                <div className="flex flex-col items-center gap-4">
-                  { requestCallBlock }
-                  { phoneBlock }
-                </div>
-            </div>
+              { logoBlock }
+              <div className="flex-1 items-center text-center">
+                { socialsBlock }
+              </div>
+              <div className="flex flex-col items-center gap-4">
+                { requestCallBlock }
+                { phoneBlock }
+              </div>
+          </div>
+          <div class="max-w-screen-lg mx-auto mt-7">
+            { credentialsBlock }
+          </div>
         </div>
     )
 }

@@ -47,3 +47,14 @@ export function useStocks() {
     });
 }
 
+export function useStaffMembers() {
+    return useQuery({
+        queryKey: ["staff-members"], 
+        queryFn: APISite.getStaffMembers,
+        staleTime: Infinity,
+        retry: false,
+        refetchOnMount: false,
+        refetchOnWindowFocus: false,
+    });
+}
+
