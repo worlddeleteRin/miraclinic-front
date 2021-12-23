@@ -85,7 +85,7 @@ function BaseFooter () {
     const credentialsBlock = (
       <div>
         <div>
-          ООО "Мира Клиник"
+          ООО &quot;Мира Клиник&quot;
           ИНН 9103093941
           ОГРН 1209100008798
         </div>
@@ -112,7 +112,7 @@ function BaseFooter () {
                 { phoneBlock }
               </div>
           </div>
-          <div class="max-w-screen-lg mx-auto mt-7">
+          <div className="max-w-screen-lg mx-auto mt-7">
             { credentialsBlock }
           </div>
         </div>

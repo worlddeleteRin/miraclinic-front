@@ -22,8 +22,8 @@ function DocumentsPage() {
   )
 
   const infoBlock1 = (
-    <div class="mt-5">
-      <div class="text-xl font-semibold mb-3">
+    <div className="mt-5">
+      <div className="text-xl font-semibold mb-3">
         Адреса и телефоны органов исполнительной власти в сфере охраны здоровья граждан
       </div>
       <div>
@@ -45,7 +45,7 @@ function DocumentsPage() {
   )
 
   const infoBlock2 = (
-    <div class="mt-5">
+    <div className="mt-5">
       ООО «Мира Клиник» не является участником программы Государственных гарантий бесплатного оказания гражданам медицинской помощи и территориальных программ государственных гарантий бесплатного оказания гражданам медицинской помощи.
       <br />
       Вы можете получить бесплатную медицинскую помощь по адресу:
@@ -57,7 +57,7 @@ function DocumentsPage() {
   )
 
   const memoButton = (
-    <div class="mt-4">
+    <div className="mt-4">
       <Button
         variant="outlined"
       >

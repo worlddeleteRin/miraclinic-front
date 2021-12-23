@@ -20,18 +20,18 @@ function DocumentsPage() {
 
   const MemberCart = ({member}) => {
     return (
-      <div class="max-w-[500px] w-auto relative overflow-hidden rounded-md mx-auto">  
-        <div class="relative"> 
+      <div className="max-w-[500px] w-auto relative overflow-hidden rounded-md mx-auto">  
+        <div className="relative"> 
           <img
             src="http://placehold.it/500x500"
-            class="object-cover"
+            className="object-cover"
           />
-          <div class="absolute bottom-0 w-full">
-            <div class="bg-white mx-3 px-3 py-2 rounded-md mb-2">
-              <div class="font-medium text-center">
+          <div className="absolute bottom-0 w-full">
+            <div className="bg-white mx-3 px-3 py-2 rounded-md mb-2">
+              <div className="font-medium text-center">
                 {member?.name}
               </div>
-              <div class="text-gray-500 text-center">
+              <div className="text-gray-500 text-center">
                 {member?.scope}
               </div>
             </div>
@@ -42,7 +42,7 @@ function DocumentsPage() {
   }
 
   const membersListBlock = (
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       {staffMembers && staffMembers?.map((member, index) => (
         <MemberCart
           key={index}
