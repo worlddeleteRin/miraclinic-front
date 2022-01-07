@@ -10,9 +10,14 @@ import { Icon } from '@iconify/react';
 
 import Link  from 'next/link';
 
+import { useCategories } from '@/hooks/useServices';
+
+
 function ServicesBlock (props) {
 
-    const services = props.services ? props.services : defaultServices
+    //const services = props.services ? props.services : defaultServices
+    const servicesQuery = useCategories();
+    const services = servicesQuery?.data;
 
     // motion
     const containerMotion = {
@@ -39,8 +44,9 @@ function ServicesBlock (props) {
 
 
     const Service = ({service}) => {
+        var href = `/services/${service?._id}`;
         return (
-            <Link href={service?.service_link}>
+          <Link href={href} passHref>
                 <motion.div
                     variants={itemMotion}
                     className="max-w-[500px] w-full sm:w-full flex-1 relative h-44 overflow-hidden cursor-pointer group">
@@ -48,14 +54,11 @@ function ServicesBlock (props) {
                             <div className="absolute top-0 left-0 bg-black w-full h-full opacity-20 z-[3] rounded-md"></div>
                             <img
                                 className="w-full h-full object-cover z-[2] rounded-md group-hover:scale-110 duration-500"
-                                src={service?.imgsrc}
+                                src={service?.imgsrc[0] }
                             />
                         </div>
                         <div className="font-semibold mt-2 bg-white z-[4] relative mx-2 px-2 py-1 rounded-lg max-w-max">
-                            { service?.title } 
-                        </div>
-                        <div className="mt-1">
-                            { service?.price }
+                            { service?.name } 
                         </div>
                         <div className="absolute bottom-2 right-2 z-[4]">
                             <Fab color="primary" size="medium">
