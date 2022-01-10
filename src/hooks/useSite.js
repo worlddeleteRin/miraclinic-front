@@ -1,7 +1,7 @@
 import { useQuery
 } from 'react-query';
 
-import { APISite } from '@/api/site';
+import APISite from '@/api/site';
 
 
 export function useCommonInfo () {

@@ -18,13 +18,12 @@ import AccordionQA from '@/components/content/AccordionQA';
 import MainSlider from '@/components/sliders/MainSlider';
 import StocksSlider from '@/components/sliders/StocksSlider';
 
-
 import TitleBig from '@/components/content/TitleBig';
 
 
 
-export default function Home() {
 
+export default function Home() {
     const ServicesTitle = (
         <TitleBig
             title="Наши услуги"

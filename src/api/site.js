@@ -31,6 +31,20 @@ class APISiteClass {
         );
         return data
     }
+    requestCall = async ({name, phone}) => {
+      console.log('call request call');
+      const body = {
+        "name": name,
+        "phone": phone
+      };
+      await apiClient.post(
+        "site/request-call",
+        body
+      );
+      // return data
+    }
 }
 
-export const APISite = new APISiteClass()
+const APISite = new APISiteClass()
+
+export default APISite

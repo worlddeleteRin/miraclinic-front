@@ -25,6 +25,8 @@ import { StyledEngineProvider } from '@mui/material/styles';
 // recoil
 import { RecoilRoot } from 'recoil';
 
+import { SnackbarProvider } from 'notistack';
+
 
 
 function MyApp({ Component, pageProps }) {
@@ -36,12 +38,21 @@ function MyApp({ Component, pageProps }) {
               <StyledEngineProvider>
 
               <ThemeProvider theme={theme}>
-                    <BaseHeader />
-                    <div className="py-5">
-                        <Component {...pageProps} />
-                    </div>
-                    <BaseFooter />
-                    <RequestCallModal />
+                    <SnackbarProvider 
+                      maxSnack={3}
+                      anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'center',
+                      }}
+                      autoHideDuration={3000}
+                    >
+                      <BaseHeader />
+                      <div className="py-5">
+                          <Component {...pageProps} />
+                      </div>
+                      <BaseFooter />
+                      <RequestCallModal />
+                    </SnackbarProvider>
               </ThemeProvider>
 
               </StyledEngineProvider>

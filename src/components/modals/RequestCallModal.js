@@ -1,11 +1,12 @@
+
+import { useState } from 'react';
+
 import { 
     Dialog,
-    DialogContent,
     Fab,
     FormControl,
-    Input,
-    InputLabel,
     Button,
+    TextField,
 } from '@mui/material';
 
 import { Icon } from '@iconify/react';
@@ -13,16 +14,60 @@ import { Icon } from '@iconify/react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
+import InputMask from "react-input-mask";
+
 import { requestCallModalOpenState } from '@/atoms/siteState';
 import { useRecoilState} from 'recoil';
 
+import { useSnackbar } from 'notistack';
+
+import APISite from '@/api/site';
 
 function RequestCallModal() {
+    const callInfoDefault = {
+      name: "",
+      phoneMasked: "", 
+      phone: "",
+    }
 
+    const { enqueueSnackbar } = useSnackbar();
     const [isOpen, setOpen] = useRecoilState(requestCallModalOpenState);
+    const [callInfo, setCallInfo] = useState(callInfoDefault);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleClose = () => {
-        setOpen(false)
+        setOpen(false);
+        setCallInfo(callInfoDefault);
+    }
+
+    const changeName = (event) => {
+      const newCallInfo = {...callInfo};
+      newCallInfo.name = event.target.value;
+      setCallInfo(newCallInfo);
+    }
+
+    function changePhone(event) {
+      var newCallInfo = {...callInfo};
+      var value = event.target.value;
+      newCallInfo.phoneMasked = value;
+      var rawValue = value.replace(/\_/g, '').replace(/\s/g, '');
+      newCallInfo.phone = rawValue;
+      setCallInfo(newCallInfo);
+    };
+
+    const submitCallClick = async () => {
+      if (isLoading) {
+        return;
+      }
+      setIsLoading(true);
+      console.log("submit call click event", callInfo);
+      await APISite.requestCall({
+        name: callInfo.name,
+        phone: callInfo.phone,
+      });
+      setIsLoading(false);
+      handleClose();
+      enqueueSnackbar('Ваша заявка успешно отправлена');
     }
 
     const theme = useTheme();
@@ -64,18 +109,26 @@ function RequestCallModal() {
             className="flex flex-col gap-5 mt-5"
         >
         <FormControl>
-            <InputLabel htmlFor="request-call-name">Ваше Имя</InputLabel>
-            <Input
-                id="request-call-name"
+            <TextField
+                value={callInfo.name}
+                onChange={(event) => changeName(event)}
+                variant="standard"
+                label="Ваше Имя"
                 className="tracking-wider max-w-[300px]"
             />
         </FormControl>
         <FormControl>
-            <InputLabel htmlFor="request-call-phone">Ваш контактный телефон</InputLabel>
-            <Input
-                id="request-call-phone"
+          <InputMask
+            mask="+7 999 999 99 99"
+            value={callInfo.phoneMasked}
+            onChange={(event) => changePhone(event)}
+          >
+            <TextField
+                variant="standard"
+                label="Ваш номер телефона"
                 className="tracking-wider max-w-[300px]"
             />
+          </InputMask>
         </FormControl>
         </div>
     )
@@ -86,6 +139,7 @@ function RequestCallModal() {
             <Button
                 variant="contained"
                 size="large"
+                onClick={submitCallClick}
             >
                 Отправить заявку
             </Button>
@@ -114,4 +168,4 @@ function RequestCallModal() {
     )
 }
 
-export default RequestCallModal
+export default RequestCallModal;
