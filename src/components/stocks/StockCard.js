@@ -32,7 +32,7 @@ function StockCard (props) {
                 <div className="tracking-wide font-semibold">
                     { stock?.title }
                 </div>
-                <div className="mt-1">
+                <div className="mt-1 line-clamp-3">
                     { stock?.description }
                 </div>
             </div>

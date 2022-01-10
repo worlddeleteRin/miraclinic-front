@@ -42,7 +42,7 @@ function RequestCallModal() {
 
     const changeName = (event) => {
       const newCallInfo = {...callInfo};
-      newCallInfo.name = event.target.value.trim();
+      newCallInfo.name = event.target.value;
       setCallInfo(newCallInfo);
     }
 

@@ -29,7 +29,7 @@ function MainSlider () {
       slidesPerView={1}
       navigation
       pagination={{clickable: true}}
-      className="mx-4 rounded-md pb-8"
+      className="rounded-md pb-8 max-w-[1100px] mx-auto"
     >
       {mainSlider?.sliders && mainSlider?.sliders?.map((slider, index) => (
       <SwiperSlide 
@@ -51,7 +51,9 @@ function MainSlider () {
         animate="show"
         variants={sliderMotion}
     >
+      <div className="mx-4">
       { contentBlock }
+      </div>
     </motion.div>
   )
 }
