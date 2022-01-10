@@ -42,7 +42,7 @@ function RequestCallModal() {
 
     const changeName = (event) => {
       const newCallInfo = {...callInfo};
-      newCallInfo.name = event.target.value;
+      newCallInfo.name = event.target.value.trim();
       setCallInfo(newCallInfo);
     }
 
@@ -55,12 +55,27 @@ function RequestCallModal() {
       setCallInfo(newCallInfo);
     };
 
+    function validateForm() {
+      if (callInfo.phone.length != 12) {
+        return false;
+      }
+      if (callInfo.name.length < 1) {
+        return false;
+      }
+      return true;
+    }
+
     const submitCallClick = async () => {
+      console.log("submit call click event", callInfo);
       if (isLoading) {
         return;
       }
+      const isValid = validateForm();
+      if (!isValid) {
+        return;
+      }
+      console.log('it is valid: ', isValid);
       setIsLoading(true);
-      console.log("submit call click event", callInfo);
       await APISite.requestCall({
         name: callInfo.name,
         phone: callInfo.phone,
